@@ -12,8 +12,12 @@ public static class Arrays
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
-
-        return []; // replace this return statement with your own
+        double[] result = new double[length];
+        for (int i = 0; i < length; i++)
+        {
+            result[i] = number * (i + 1);
+        }
+        return result; // replace this return statement with your own
     }
 
     /// <summary>
@@ -29,5 +33,19 @@ public static class Arrays
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
+        if (data == null || data.Count == 0 || amount <= 0)
+        return data;
+
+        int count = data.Count;
+        amount = amount % count; // Handle rotations greater than list size
+
+        if (amount == 0)
+            return data;
+
+        List<int> rotated = new List<int>(count);
+        rotated.AddRange(data.GetRange(count - amount, amount)); // Last 'amount' elements
+        rotated.AddRange(data.GetRange(0, count - amount));      // Remaining elements
+
+        return rotated;
     }
 }
