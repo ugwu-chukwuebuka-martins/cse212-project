@@ -14,9 +14,9 @@ public static class Arrays
         // be implemented by another person.
 
         /* 
-           Create an array result and make its capacity to be the given length
-           Write a for loop which appends a value to array result
-           by multiplying the given number and (i+1)
+           Create an array result and make the given length its capacity,
+           Write a for loop which appends a value to the array result
+           by multiplying the given number and (i+1),
            return the array result
         */
 
@@ -43,15 +43,15 @@ public static class Arrays
         // be implemented by another person.
 
         /* 
-           Use an if statement to check if the list data is null or the length of the data is 0,
+           Use an if statement to check if the list (data) is null or the length of the list (data) is 0,
            or the amount is less than or equal to 0.
-           return the list data
-           Create an integer count, which its value will be eqaul to then length of the list data
-           Reassign the integer amount to be equal to amount % count
-           Check if the amount is equal to 0 and return the data
-           Create a new list rotated
-           Use the AddRange function and add values to the list rotated
-           return the list rotated 
+           return the list (data)
+           Create an integer count, which its value will be eqaul to the length of the list (data)
+           Reassign the integer amount to be equal to (amount % count)
+           Check if the amount is equal to 0 and return the list (data)
+           Create a new list (rotated)
+           Use the AddRange function and add values to the list rotated,
+           return the list rotated. 
         */
         if (data == null || data.Count == 0 || amount <= 0)
             return data;
