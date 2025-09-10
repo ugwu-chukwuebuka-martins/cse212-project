@@ -34,7 +34,7 @@ public static class Arrays
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
         if (data == null || data.Count == 0 || amount <= 0)
-        return data;
+            return data;
 
         int count = data.Count;
         amount = amount % count; // Handle rotations greater than list size
