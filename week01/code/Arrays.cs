@@ -35,7 +35,7 @@ public static class Arrays
     ///
     /// Because a list is dynamic, this function will modify the existing data list rather than returning a new list.
     /// </summary>
-    public static List<int> RotateListRight(List<int> data, int amount)
+    public static void RotateListRight(List<int> data, int amount)
     {
         // TODO Problem 2 Start
         // Remember: Using comments in your program, write down your process for solving this problem
@@ -48,24 +48,29 @@ public static class Arrays
            return the list (data)
            Create an integer count, which its value will be eqaul to the length of the list (data)
            Reassign the integer amount to be equal to (amount % count)
-           Check if the amount is equal to 0 and return the list (data)
+           Use an if statement to check if the amount is equal to 0
            Create a new list (rotated)
            Use the AddRange and GetRange function to add values to the list rotated,
-           return the list rotated. 
+           Loop through the list (rotated) and assign the values to the list (data).
         */
         if (data == null || data.Count == 0 || amount <= 0)
-            return data;
+            return;
 
         int count = data.Count;
-        amount = amount % count; // Handle rotations greater than list size
+        amount %= count; // Handle cases where amount > count
 
         if (amount == 0)
-            return data;
+            return;
 
+        // Perform rotation
         List<int> rotated = new List<int>(count);
-        rotated.AddRange(data.GetRange(count - amount, amount)); // Last 'amount' elements
-        rotated.AddRange(data.GetRange(0, count - amount));      // Remaining elements
+        rotated.AddRange(data.GetRange(count - amount, amount)); // Take last 'amount' elements
+        rotated.AddRange(data.GetRange(0, count - amount));      // Take the rest
 
-        return rotated;
+        // Copy back to original list
+        for (int i = 0; i < count; i++)
+        {
+            data[i] = rotated[i];
+        }
     }
 }
