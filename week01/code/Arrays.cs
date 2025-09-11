@@ -50,7 +50,7 @@ public static class Arrays
            Reassign the integer amount to be equal to (amount % count)
            Check if the amount is equal to 0 and return the list (data)
            Create a new list (rotated)
-           Use the AddRange function and add values to the list rotated,
+           Use the AddRange and GetRange function to add values to the list rotated,
            return the list rotated. 
         */
         if (data == null || data.Count == 0 || amount <= 0)
