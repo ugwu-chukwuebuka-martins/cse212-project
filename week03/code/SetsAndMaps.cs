@@ -22,9 +22,30 @@ public static class SetsAndMaps
     public static string[] FindPairs(string[] words)
     {
         // TODO Problem 1 - ADD YOUR CODE HERE
-        return [];
+        var wordSet = new HashSet<string>(words);
+        var result = new List<string>();
+        var seen = new HashSet<string>();
+
+        foreach (var word in words)
+        {
+            var reversed = Reverse(word);
+            if (wordSet.Contains(reversed) && !seen.Contains(word) && !seen.Contains(reversed))
+            {
+                result.Add($"{word} & {reversed}");
+                seen.Add(word);
+                seen.Add(reversed);
+            }
+        }
+
+        return result.ToArray();
     }
 
+    private static string Reverse(string s)
+    {
+        char[] arr = s.ToCharArray();
+        Array.Reverse(arr);
+        return new string(arr);
+    }
     /// <summary>
     /// Read a census file and summarize the degrees (education)
     /// earned by those contained in the file.  The summary
@@ -43,6 +64,14 @@ public static class SetsAndMaps
         {
             var fields = line.Split(",");
             // TODO Problem 2 - ADD YOUR CODE HERE
+            if (degrees.ContainsKey(fields[3]))
+            {
+                degrees[fields[3]]++;
+            }
+            else
+            {
+                degrees[fields[3]] = 1;
+            }
         }
 
         return degrees;
@@ -67,7 +96,15 @@ public static class SetsAndMaps
     public static bool IsAnagram(string word1, string word2)
     {
         // TODO Problem 3 - ADD YOUR CODE HERE
-        return false;
+        if (word1 == null || word2 == null)
+            return false;
+
+        // Normalize: remove whitespace and convert to lowercase
+        var normalized1 = new string(word1.ToLower().Where(char.IsLetterOrDigit).ToArray());
+        var normalized2 = new string(word2.ToLower().Where(char.IsLetterOrDigit).ToArray());
+
+        // Compare sorted characters
+        return normalized1.OrderBy(c => c).SequenceEqual(normalized2.OrderBy(c => c));
     }
 
     /// <summary>
@@ -101,6 +138,9 @@ public static class SetsAndMaps
         // on those classes so that the call to Deserialize above works properly.
         // 2. Add code below to create a string out each place a earthquake has happened today and its magitude.
         // 3. Return an array of these string descriptions.
-        return [];
+
+        var summaries = featureCollection?.Features?.Where(f => f.Properties?.Place != null && f.Properties?.Mag != null).Select(f => $"Magnitude {f.Properties.Mag} - {f.Properties.Place}").ToArray();
+
+        return summaries ?? Array.Empty<string>();
     }
 }
